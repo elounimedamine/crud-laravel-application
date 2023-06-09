@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -11,29 +11,28 @@ class ProductController extends Controller
     //
     public function index(){
         $products = Product::all();
-        return view('crud.index', compact('products'));
+        return view('crud_products.index', compact('products'));
     }
 
     public function DeleteProduct($id){
         $product = Product::find($id);
         $product->delete();
 
-        return redirect()->back()->with('success', 'Produit est supprimée avec succèss');
-        
+        return redirect()->back()->with('success', 'Produit est supprimée avec succèss');  
     }
 
     public function ShowCreate(){
-        return view('crud.create');
+        return view('crud_products.create');
     }
 
     public function ShowEdit($id){
         $product = Product::find($id);
-        return view('crud.edit', compact('product'));
+        return view('crud_products.edit', compact('product'));
     }
 
     public function View($id){
         $product = Product::find($id);
-        return view('crud.view', compact('product'));
+        return view('crud_products.view', compact('product'));
     }
 
     public function Create(Request $request){
@@ -93,10 +92,6 @@ class ProductController extends Controller
         
         
     }
-
-    
-
-
 
     
 }

@@ -27,6 +27,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-success">Edit</button>
+                    <a class="btn btn-dark" href="{{ route('index') }}">Back To HomePage</a>
                 </form>
             </div>
         </div>

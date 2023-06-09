@@ -4,7 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="container mt-3">
+                {{-- <a href="{{ route('index') }}"><h4>Products Page</h4></a>&nbsp;&nbsp;&nbsp; --}}
+                <a href="{{ route('index-category') }}"><h4>Categories Page</h4></a>
+                <div class="container mt-4">
                     <h2>Products Table</h2>
                     <a class="btn btn-primary mb-3" href="{{ route('create-get') }}">Add</a>
                     <table class="table table-bordered">
