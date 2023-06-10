@@ -7,20 +7,20 @@
                 <form action="{{ route('edit-category-post', $categorie->id) }}" method="POST">
                     @csrf
                     <div class="mb-3 mt-3">
-                        <label for="Name" class="form-label">Name:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter name of categorie"
-                            name="name" value="{{ $categorie->name }}">
-                        @error('name')
+                        <label for="name_category" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="name_category" placeholder="Enter name of categorie"
+                            name="name_category" value="{{ $categorie->name_category }}">
+                        @error('name_category')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="details" class="form-label">Details:</label>
-                        <input type="text" class="form-control" id="details" placeholder="Enter details of categorie"
-                            name="details" value="{{ $categorie->details }}">
-                        @error('details')
+                        <label for="details_category" class="form-label">Details:</label>
+                        <input type="text" class="form-control" id="details_category" placeholder="Enter details of categorie"
+                            name="details_category" value="{{ $categorie->details_category }}">
+                        @error('details_category')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

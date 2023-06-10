@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <a href="{{ route('index') }}"><h4>categories Page</h4></a>
+                <a href="{{ route('index') }}"><h4>Products Page</h4></a>
                 <div class="container mt-4">
                     <h2>Categories Table</h2>
                     <a class="btn btn-primary mb-3" href="{{ route('create-category-get') }}">Add</a>
@@ -21,8 +21,8 @@
                             @foreach ($categories as $categorie)
                                 <tr>
                                     <td>{{ $categorie->id }}</td>
-                                    <td>{{ $categorie->name }}</td>
-                                    <td>{{ $categorie->details }}</td>
+                                    <td>{{ $categorie->name_category }}</td>
+                                    <td>{{ $categorie->details_category }}</td>
                                     <td>
                                         <a class="btn btn-info" href="{{ route('view-category-get', $categorie->id) }}">View</a>
 

@@ -15,6 +15,7 @@
                                 <th>ID Products</th>
                                 <th>Name</th>
                                 <th>Details</th>
+                                <th>Category</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -22,8 +23,9 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{ $product->id }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td>{{ $product->details }}</td>
+                                    <td>{{ $product->name_product }}</td>
+                                    <td>{{ $product->details_product }}</td>
+                                    <td>{{ $product->category->name_category }}</td>
                                     <td>
                                         <a class="btn btn-info" href="{{ route('view-get', $product->id) }}">View</a>
 

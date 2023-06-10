@@ -38,22 +38,22 @@ class CategoryController extends Controller
     public function CreateCategory(Request $request){
 
         $request->validate([
-           'name' => 'required|string|max:255',
-           'details' => 'required|string|max:255',
+           'name_category' => 'required|string|max:255',
+           'details_category' => 'required|string|max:255',
         ],[
-            'name.required' => 'name is required',
-            'name.string' => 'name is string',
-            'name.max' => 'name has a 255 max of caracters',
+            'name_category.required' => 'name_category is required',
+            'name_category.string' => 'name_category is string',
+            'name_category.max' => 'name_category has a 255 max of caracters',
 
-            'details.required' => 'details is required',
-            'details.string' => 'details is string',
-            'details.max' => 'details has a 255 max of caracters',
+            'details_category.required' => 'details_category is required',
+            'details_category.string' => 'details_category is string',
+            'details_category.max' => 'details_category has a 255 max of caracters',
         ]);
 
         $categorie = new Category();
         
-        $categorie->name = $request->name;
-        $categorie->details = $request->details;
+        $categorie->name_category = $request->name_category;
+        $categorie->details_category = $request->details_category;
 
         if($categorie->save()){
             return redirect()->route('index-category')->with('success', 'Catégorie est ajoutée avec succèss.');
@@ -67,22 +67,22 @@ class CategoryController extends Controller
     public function EditCategory(Request $request, $id){
 
         $request->validate([
-           'name' => 'required|string|max:255',
-           'details' => 'required|string|max:255',
-        ],[
-            'name.required' => 'name is required',
-            'name.string' => 'name is string',
-            'name.max' => 'name has a 255 max of caracters',
-
-            'details.required' => 'details is required',
-            'details.string' => 'details is string',
-            'details.max' => 'details has a 255 max of caracters',
-        ]);
+            'name_category' => 'required|string|max:255',
+            'details_category' => 'required|string|max:255',
+         ],[
+             'name_category.required' => 'name_category is required',
+             'name_category.string' => 'name_category is string',
+             'name_category.max' => 'name_category has a 255 max of caracters',
+ 
+             'details_category.required' => 'details_category is required',
+             'details_category.string' => 'details_category is string',
+             'details_category.max' => 'details_category has a 255 max of caracters',
+         ]);
 
         $categorie = Category::find($id);
         
-        $categorie->name = $request->name;
-        $categorie->details = $request->details;
+        $categorie->name_category = $request->name_category;
+        $categorie->details_category = $request->details_category;
 
         if($categorie->save()){
             return redirect()->route('index-category')->with('success', 'Catégorie est modifiée avec succèss.');

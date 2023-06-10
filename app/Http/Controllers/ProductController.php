@@ -11,7 +11,8 @@ class ProductController extends Controller
     //
     public function index(){
         $products = Product::all();
-        return view('crud_products.index', compact('products'));
+        $categories = Category::all();
+        return view('crud_products.index', compact('products', 'categories'));
     }
 
     public function DeleteProduct($id){
@@ -22,38 +23,45 @@ class ProductController extends Controller
     }
 
     public function ShowCreate(){
-        return view('crud_products.create');
+        $categories = Category::all();
+        return view('crud_products.create', compact('categories'));
     }
 
     public function ShowEdit($id){
         $product = Product::find($id);
-        return view('crud_products.edit', compact('product'));
+        $categories = Category::all();
+        return view('crud_products.edit', compact('product', 'categories'));
     }
 
     public function View($id){
         $product = Product::find($id);
-        return view('crud_products.view', compact('product'));
+        $categories = Category::all();
+        return view('crud_products.view', compact('product', 'categories'));
     }
 
     public function Create(Request $request){
 
         $request->validate([
-           'name' => 'required|string|max:255',
-           'details' => 'required|string|max:255',
+           'name_product' => 'required|string|max:255',
+           'details_product' => 'required|string|max:255',
+           
+           'category_id' => 'required', //name of selected menus
         ],[
-            'name.required' => 'name is required',
-            'name.string' => 'name is string',
-            'name.max' => 'name has a 255 max of caracters',
+            'name_product.required' => 'name_product is required',
+            'name_product.string' => 'name_product is string',
+            'name_product.max' => 'name_product has a 255 max of caracters',
 
-            'details.required' => 'details is required',
-            'details.string' => 'details is string',
-            'details.max' => 'details has a 255 max of caracters',
+            'details_product.required' => 'details_product is required',
+            'details_product.string' => 'details_product is string',
+            'details_product.max' => 'details_product has a 255 max of caracters',
         ]);
 
         $product = new Product();
         
-        $product->name = $request->name;
-        $product->details = $request->details;
+        $product->name_product = $request->name_product;
+        $product->details_product = $request->details_product;
+
+        $product->category_id = $request->category_id; //name of selected menus
 
         if($product->save()){
             return redirect()->route('index')->with('success', 'Produit est ajoutée avec succèss.');
@@ -64,34 +72,38 @@ class ProductController extends Controller
         
     }
 
-    public function Edit(Request $request, $id){
-
+    
+    public function edit(Request $request, $id){
+        
         $request->validate([
-           'name' => 'required|string|max:255',
-           'details' => 'required|string|max:255',
-        ],[
-            'name.required' => 'name is required',
-            'name.string' => 'name is string',
-            'name.max' => 'name has a 255 max of caracters',
-
-            'details.required' => 'details is required',
-            'details.string' => 'details is string',
-            'details.max' => 'details has a 255 max of caracters',
+            'name' => 'required|string|max:255',
+            'details_product' => 'required|string|max:255',
+            //pas de category_id que create
+        ], [
+            'name.required' => 'Name is required',
+            'name.string' => 'Name must be a string',
+            'name.max' => 'Name should not exceed 255 characters',
+            'details_product.required' => 'Details are required',
+            'details_product.string' => 'Details must be a string',
+            'details_product.max' => 'Details should not exceed 255 characters',
         ]);
 
         $product = Product::find($id);
-        
-        $product->name = $request->name;
-        $product->details = $request->details;
 
-        if($product->save()){
-            return redirect()->route('index')->with('success', 'Produit est modifiée avec succèss.');
-        }else{ 
-            return redirect()->back()->with('erreurs', 'Produit non modifiée');
+        $product->name_product = $request->name;
+        $product->details_product = $request->details_product;
+
+        $product->category_id = $request->category_id;
+
+        
+        if ($product->save()) {
+            return redirect()->route('index')->with('success', 'Product updated successfully');
+        } else {
+            return redirect()->back()->with('errors', 'Failed to update product');
         }
         
-        
     }
+
 
     
 }
