@@ -14,6 +14,7 @@
                                 <th>ID Category</th>
                                 <th>Name</th>
                                 <th>Details</th>
+                                <th>Numbers of Products Per Category</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -23,6 +24,7 @@
                                     <td>{{ $categorie->id }}</td>
                                     <td>{{ $categorie->name_category }}</td>
                                     <td>{{ $categorie->details_category }}</td>
+                                    <td>{{ $categorie->products->count() }}</td>
                                     <td>
                                         <a class="btn btn-info" href="{{ route('view-category-get', $categorie->id) }}">View</a>
 

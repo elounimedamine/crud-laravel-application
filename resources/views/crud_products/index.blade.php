@@ -4,10 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                {{-- <a href="{{ route('index') }}"><h4>Products Page</h4></a>&nbsp;&nbsp;&nbsp; --}}
                 <a href="{{ route('index-category') }}"><h4>Categories Page</h4></a>
                 <div class="container mt-4">
                     <h2>Products Table</h2>
+                    <h2>The numbers of Products is : {{ $products->count() }} products</h2>
                     <a class="btn btn-primary mb-3" href="{{ route('create-get') }}">Add</a>
                     <table class="table table-bordered">
                         <thead>
